@@ -11,6 +11,6 @@ public class Product {
     private String title;
     private String description;
     private String imageURL;
-    private com.example.backendProject.Models.Category category;
+    private Category category;
 
 }

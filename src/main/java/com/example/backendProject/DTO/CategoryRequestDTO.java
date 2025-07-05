@@ -5,10 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class FakeStoreResponseDTO {
+public class CategoryRequestDTO {
     private Integer id;
     private String title;
-    private String description;
-    private String category;
-    private String imageUrl;
 }

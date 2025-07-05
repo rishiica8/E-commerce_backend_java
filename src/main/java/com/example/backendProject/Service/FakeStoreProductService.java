@@ -48,7 +48,7 @@ public class FakeStoreProductService implements ProductService {
         product.setId(response.getId());
         product.setCategory(category);
         product.setDescription(response.getDescription());
-        product.setImageURL(response.getImage());
+        product.setImageURL(response.getImageUrl());
         product.setTitle(response.getTitle());
 
         return product;
@@ -56,7 +56,7 @@ public class FakeStoreProductService implements ProductService {
     public List<Product> getAllProducts(){
         List<Product> response = new ArrayList<>();
         ResponseEntity<FakeStoreResponseDTO[]> FakeStoreResponse =
-                restTemplate.getForEntity("https://fakestoreapi.com/products/",FakeStoreResponseDTO[].class);
+                restTemplate.getForEntity("https://fakestoreapi.com/products",FakeStoreResponseDTO[].class);
         System.out.println("Status Code : " + FakeStoreResponse.getStatusCode());
        // now converting the response
         for (FakeStoreResponseDTO fakestoreDTO : FakeStoreResponse.getBody()) {
@@ -65,11 +65,21 @@ public class FakeStoreProductService implements ProductService {
 
         return response;
 
-
-
     }
 
-    public Product createProduct(String title, String imageURL, String catTitle, String description){
-        return null;
+    public Product createProduct(Product product){
+        Product response;
+        FakeStoreResponseDTO requestBody= new FakeStoreResponseDTO();
+        requestBody.setTitle(product.getTitle());
+        requestBody.setDescription(product.getDescription());
+        requestBody.setImageUrl(product.getImageURL());
+        requestBody.setCategory(product.getCategory().getTitle());
+       ResponseEntity< FakeStoreResponseDTO> FakeStoreResponse=
+                restTemplate.postForEntity("https://fakestoreapi.com/products",requestBody,FakeStoreResponseDTO.class);
+
+        System.out.println("Status Code : " + FakeStoreResponse.getStatusCode());
+        response=convertFakeStoreResponseToProduct(FakeStoreResponse.getBody());
+        return response;
+
     }
 }

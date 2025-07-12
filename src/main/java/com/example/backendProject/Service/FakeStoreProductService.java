@@ -10,8 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
-
+@Service("FakeStoreProductService")
 public class FakeStoreProductService implements ProductService {
     private RestTemplate restTemplate;
 
@@ -67,13 +66,13 @@ public class FakeStoreProductService implements ProductService {
 
     }
 
-    public Product createProduct(Product product){
+    public Product createProduct(Product p){
         Product response;
         FakeStoreResponseDTO requestBody= new FakeStoreResponseDTO();
-        requestBody.setTitle(product.getTitle());
-        requestBody.setDescription(product.getDescription());
-        requestBody.setImageUrl(product.getImageURL());
-        requestBody.setCategory(product.getCategory().getTitle());
+        requestBody.setTitle(p.getTitle());
+        requestBody.setDescription(p.getDescription());
+        requestBody.setImageUrl(p.getImageURL());
+        requestBody.setCategory(p.getCategory().getTitle());
        ResponseEntity< FakeStoreResponseDTO> FakeStoreResponse=
                 restTemplate.postForEntity("https://fakestoreapi.com/products",requestBody,FakeStoreResponseDTO.class);
 

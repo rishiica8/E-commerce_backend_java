@@ -1,14 +1,18 @@
 package com.example.backendProject.Models;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.util.List;
 @Getter
 @Setter
-public class Category  {
-    private String Title;
+@Entity
+public class Category  extends  BaseModel implements Serializable {
+    private String title;
+    @OneToMany(mappedBy="category",cascade = {CascadeType.REMOVE},fetch = FetchType.LAZY)
     private List<Product> products;
 
 

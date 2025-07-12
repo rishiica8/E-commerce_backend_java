@@ -5,15 +5,17 @@ import com.example.backendProject.Exception.ProductNotFoundException;
 import com.example.backendProject.Models.Category;
 import com.example.backendProject.Models.Product;
 import com.example.backendProject.Service.FakeStoreProductService;
+import com.example.backendProject.Service.ProductService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class ProductController {
-    private FakeStoreProductService service;
+    private ProductService service;
 
-    public ProductController(FakeStoreProductService inputService) {
+    public ProductController(@Qualifier("SelfProductService") ProductService inputService) {
         this.service = inputService;
     }
 

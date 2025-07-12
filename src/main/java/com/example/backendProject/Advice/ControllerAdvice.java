@@ -1,13 +1,12 @@
-package com.example.backendProject.Advise;
+package com.example.backendProject.Advice;
 
 import com.example.backendProject.DTO.ErrorDTO;
 import com.example.backendProject.Exception.ProductNotFoundException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@ControllerAdvice
-public class ControllerAdvise {
+@org.springframework.web.bind.annotation.ControllerAdvice
+public class ControllerAdvice {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ErrorDTO> handleIllegalArgumentException(){
       ErrorDTO errorDTO=new ErrorDTO();

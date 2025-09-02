@@ -81,4 +81,7 @@ public class FakeStoreProductService implements ProductService {
         return response;
 
     }
+    public Category getCategorybyId(Integer id){
+        return null;
+    }
 }

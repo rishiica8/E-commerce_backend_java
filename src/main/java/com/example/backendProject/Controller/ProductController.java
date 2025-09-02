@@ -19,7 +19,7 @@ public class ProductController {
         this.service = inputService;
     }
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/Products/{id}")
     public Product getProductById(@PathVariable("id") Integer id) throws ProductNotFoundException {
         if(id>500){
             throw new IllegalArgumentException("id should not be greater than 500");

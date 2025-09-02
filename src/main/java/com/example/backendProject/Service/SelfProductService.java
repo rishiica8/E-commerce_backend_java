@@ -26,6 +26,7 @@ public class SelfProductService implements ProductService{
       if(!response.isPresent()){
           throw new IllegalArgumentException("Product not found");
       }
+      System.out.println("Fetched Product:" + response.get());
         return response.get();
     }
    @Override
@@ -62,10 +63,17 @@ public class SelfProductService implements ProductService{
         Product response = productRepo.save(product);
         return response;
     }
-
+// we can do all the validations here
     private void validateInputRequest(Product p) {
        if(p.getTitle() == null || p.getTitle().isEmpty()){
            throw new IllegalArgumentException("Title cannot be null");
        }
+    }
+    public Category getCategorybyId(Integer id) {
+        Optional<Category> response= categoryRepo.findById(id);
+        if(!response.isPresent()){
+            throw new IllegalArgumentException("Category not found");
+        }
+        return response.get();
     }
 }

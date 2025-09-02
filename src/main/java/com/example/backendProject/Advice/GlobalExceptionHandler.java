@@ -1,12 +1,14 @@
 package com.example.backendProject.Advice;
 
 import com.example.backendProject.DTO.ErrorDTO;
+import com.example.backendProject.Exception.CategoryNotFoundException;
 import com.example.backendProject.Exception.ProductNotFoundException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@org.springframework.web.bind.annotation.ControllerAdvice
-public class ControllerAdvice {
+@ControllerAdvice
+public class GlobalExceptionHandler {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ErrorDTO> handleIllegalArgumentException(){
       ErrorDTO errorDTO=new ErrorDTO();
@@ -20,5 +22,13 @@ public class ControllerAdvice {
         errorDTO.setErrorCode("404");
         errorDTO.setErrorMsg("Product Not Found");
         return ResponseEntity.badRequest().body(errorDTO);
+    }
+    @ExceptionHandler(CategoryNotFoundException.class)
+    public ResponseEntity<ErrorDTO> handleCategoryNotFoundException(){
+        ErrorDTO errorDTO=new ErrorDTO();
+        errorDTO.setErrorCode("404");
+        errorDTO.setErrorMsg("Category Not Found");
+        return ResponseEntity.badRequest().body(errorDTO);
+
     }
 }

@@ -9,6 +9,7 @@ import java.util.Optional;
 @Repository
 public interface CategoryRepo extends JpaRepository<Category, Integer> {
     @Override
+    //JPA query
     Optional<Category> findById(Integer id);
     Optional<Category> findByTitle(String title);
 }

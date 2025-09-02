@@ -1,6 +1,7 @@
 package com.example.backendProject.Models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -18,6 +19,7 @@ public class Product extends BaseModel implements Serializable {
     private String description;
     private String imageURL;
      @ManyToOne( cascade = CascadeType.ALL)
+     @JsonIgnore
     private Category category;
 
 
